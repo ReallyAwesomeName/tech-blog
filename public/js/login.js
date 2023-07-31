@@ -1,25 +1,26 @@
-const loginFormHandler = async function(event) {
+// login.js
+// handles login form functionality
+
+const loginFormHandler = async function (event) {
   event.preventDefault();
-
-  const usernameEl = document.querySelector('#username-input-login');
-  const passwordEl = document.querySelector('#password-input-login');
-
-  const response = await fetch('/api/user/login', {
-    method: 'POST',
+  const usernameElement = document.querySelector("#username-input-login");
+  const passwordElement = document.querySelector("#password-input-login");
+  const res = await fetch("/api/user/login", {
+    method: "POST",
     body: JSON.stringify({
-      username: usernameEl.value,
-      password: passwordEl.value,
+      username: usernameElement.value,
+      password: passwordElement.value,
     }),
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   });
 
-  if (response.ok) {
-    document.location.replace('/dashboard');
+  if (res.ok) {
+    document.location.replace("/dashboard");
   } else {
-    alert('Failed to login');
+    alert("Login failed. Please try again.");
   }
 };
 
 document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector("#login-form")
+  .addEventListener("submit", loginFormHandler);
