@@ -17,7 +17,6 @@ router.get("/", auth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -31,3 +30,5 @@ router.get("/newpost", auth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

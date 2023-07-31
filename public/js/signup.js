@@ -6,10 +6,10 @@ const signupFormHandler = async function (event) {
   const usernameElement = document.querySelector("#username-input-signup");
   const passwordElement = document.querySelector("#password-input-signup");
   const passwordConfirmationElement = document.querySelector(
-    "password-input-signup-confirmation"
+    "#password-input-signup-confirmation"
   );
   // check that passwords match
-  if (passwordElement.value !== passwordConfirmationElement.value) {
+  if (passwordElement.value != passwordConfirmationElement.value) {
     alert("Passwords do not match. Please try again.");
     return;
   }

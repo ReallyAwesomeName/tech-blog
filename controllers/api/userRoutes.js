@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
       req.session.user_id = user.id;
       req.session.username = user.username;
       req.session.logged_in = true;
-      res.status(200).json(user);
+      res.json(user);
     });
   } catch (err) {
     res.status(500).json(err);
@@ -27,14 +27,24 @@ router.post("/login", async (req, res) => {
         username: req.body.username,
       },
     });
-    if (user && bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.save(() => {
-        req.session.user_id = user.id;
-        req.session.username = user.username;
-        req.session.logged_in = true;
-        res.json({ user, message: "You have successfully logged in!" });
-      });
+
+    if (!user) {
+      res.status(400).json({ message: "No account found" });
+      return;
     }
+
+    const passwordValid = user.checkPassword(req.body.password);
+    if (!passwordValid) {
+      console.log("number 2");
+      res.status(400).json({ message: "No account found" });
+      return;
+    }
+    req.session.save(() => {
+      req.session.user_id = user.id;
+      req.session.username = user.username;
+      req.session.logged_in = true;
+      res.json({ user, message: "You have successfully logged in!" });
+    });
   } catch (err) {
     res.status(400).json({ message: "No account found" });
   }
