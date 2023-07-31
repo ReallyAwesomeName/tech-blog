@@ -4,6 +4,8 @@
 
 tech blog with persistent accounts, posts and comments
 
+currently has full backend working and signup/login/logout functionality but no styling or post/comment front end 
+
 ## Table of Contents
 
 - [tech-blog](#tech-blog)
