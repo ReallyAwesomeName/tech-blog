@@ -32,10 +32,10 @@ User.init(
     },
   },
   {
-    // hooks: {
-    //   beforeCreate: hashPassword,
-    //   beforeUpdate: hashPassword,
-    // },
+    hooks: {
+      beforeCreate: hashPassword,
+      beforeUpdate: hashPassword,
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
