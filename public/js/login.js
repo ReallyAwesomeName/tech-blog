@@ -15,7 +15,7 @@ const loginFormHandler = async function (event) {
   });
 
   if (res.ok) {
-    document.location.replace("/dashboard");
+    document.location.replace("/profile");
   } else {
     alert("Login failed. Please try again.");
   }
